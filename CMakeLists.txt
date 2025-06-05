@@ -8,4 +8,5 @@ include_directories(include)
 add_executable(http_server
         src/main.c
         src/parse_args.c
+        src/server.c
 )

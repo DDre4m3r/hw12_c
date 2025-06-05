@@ -2,6 +2,7 @@
 #include <string.h>
 
 #include "parse_args.h"
+#include "server.h"
 
 int main(int argc, char** argv) {
 	const char* progname = argv[0];
@@ -15,11 +16,12 @@ int main(int argc, char** argv) {
 	int res = parse_args(argc, argv, &args);
 	if (res != 0 || args.show_help) {
 		print_help(progname);
-		return res == 0 ? 0 : 1;
+		return res ?: 1;
 	}
 
 	printf("Path: %s\n", args.path);
-	printf("Address: %s\n", args.addr);
-	printf("Port: %d\n", args.port);
-	return 0;
+//	printf("Address: %s\n", args.addr);
+//	printf("Port: %d\n", args.port);
+
+	return run_server(&args);
 }
